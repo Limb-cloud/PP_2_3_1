@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Главная страница</title>
+
+  <style type="text/css">
+    TABLE {
+      border-collapse: collapse; /* Убираем двойные линии между ячейками */
+      width: 600px; /* Ширина таблицы */
+    }
+    TH {
+      background: #fc0; /* Цвет фона ячейки */
+      text-align: left; /* Выравнивание по левому краю */
+    }
+    TD {
+      background: #fff; /* Цвет фона ячеек */
+      text-align: center; /* Выравнивание по центру */
+    }
+    TH, TD {
+      border: 1px solid black; /* Параметры рамки */
+      padding: 4px; /* Поля вокруг текста */
+    }
+    .adduser_button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 16px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 8px 2px;
+      cursor: pointer;
+    }
+
+    .update_button {
+      background-color: #e3f307;
+      border: none;
+      color: white;
+      padding: 7px 15px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 8px 2px;
+      cursor: pointer;
+    }
+
+    .remove_button {
+      background-color: #d00c0c;
+      border: none;
+      color: white;
+      padding: 8px 16px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 1px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <a href="/adduser_form" class="adduser_button">Добавить пользователя</a>
+
+  <h2>Список пользователей</h2>
+
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Имя</th>
+      <th>Фамилия</th>
+      <th>Почта</th>
+      <th>Возраст</th>
+      <th>Изменить пользователя</th>
+      <th>Удалить пользователя</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Иван</td>
+      <td>Иванов</td>
+      <td>ivano.iv@gmail.com</td>
+      <td>32</td>
+      <td><a href="/update_user_form" class="update_button">Изменить пользователя</a></td>
+      <td><a href="/remove_user" class="remove_button" methods="POST">Удалить пользователя</a></td>
+    </tr>
+  </table>
+</body>
+</html>
