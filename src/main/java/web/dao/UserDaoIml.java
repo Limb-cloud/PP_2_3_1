@@ -1,5 +1,6 @@
 package web.dao;
 
+import java.util.Collections;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,10 +11,9 @@ public class UserDaoIml implements UserDao {
 
   public UserDaoIml() {}
 
-  @SuppressWarnings("unchecked")
   @Override
   public List<User> listUsers() {
-    return null;
+    return Collections.emptyList();
   }
 
   @Transactional

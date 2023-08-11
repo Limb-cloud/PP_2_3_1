@@ -19,7 +19,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = "web.dao")
 @ComponentScan("web")
 public class AppConfig {
 
