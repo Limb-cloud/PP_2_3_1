@@ -3,19 +3,24 @@ package web.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import web.service.UserService;
+import web.service.UserServiceImpl;
 
 @Controller
 public class UserController {
 
+  private final UserService userService= new UserServiceImpl();
   private static final String REDIRECT_MAIN_PAGE = "redirect:/";
 
   @GetMapping(value = "/")
   public String printWelcome() {
+    userService.listUsers();
     return "index";
   }
 
   @GetMapping(value = "/adduser_form")
   public String printAddUser() {
+    userService.addUser("Вячеслав", "Клименко", "lol.sava.pro@mail.ru", (byte) 23);
     return "add_user";
   }
 
