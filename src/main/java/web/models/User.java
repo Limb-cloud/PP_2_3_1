@@ -1,7 +1,7 @@
 package web.models;
 
 import javax.persistence.*;
-import java.util.Objects;
+import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.validation.constraints.Pattern;
 
 @Entity
@@ -27,12 +27,11 @@ public class User {
 
   @Column(name = "age")
   @Pattern(regexp="[1-9][0-9]*", message = "Поле Возраст должно быть больше ноля и может содержать только цифры")
-  private Byte age;
+  private Integer age;
 
-  public User() {
-  }
+  public User() {}
 
-  public User(String firstName, String lastName, String email, Byte age) {
+  public User(String firstName, String lastName, String email, Integer age) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
@@ -71,30 +70,11 @@ public class User {
     this.email = email;
   }
 
-  public Byte getAge() {
+  public Integer getAge() {
     return age;
   }
 
-  public void setAge(Byte age) {
+  public void setAge(Integer age) {
     this.age = age;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    User user = (User) o;
-    return Objects.equals(id, user.id) && Objects.equals(firstName,
-        user.firstName) && Objects.equals(lastName, user.lastName)
-        && Objects.equals(email, user.email) && Objects.equals(age, user.age);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, firstName, lastName, email, age);
   }
 }

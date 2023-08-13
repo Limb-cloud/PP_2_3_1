@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService{
 
   @Override
   public void removeUser(Long id) {
-    dao.remove(getUserById(id));
+    dao.remove(id);
   }
 
   @Override

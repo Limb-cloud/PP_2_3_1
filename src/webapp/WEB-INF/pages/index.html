@@ -78,19 +78,19 @@
     </tr>
     <tr th:each="user : ${users}">
       <td th:utext="${user.getId()}">Id</td>
-      <td th:utext="${user.getFirstName()()}">Имя</td>
+      <td th:utext="${user.getFirstName()}">Имя</td>
       <td th:utext="${user.getLastName()}">Фамилия</td>
       <td th:utext="${user.getEmail()}">Почта</td>
       <td th:utext="${user.getAge()}">Возраст</td>
       <td>
-        <form th:method="GET" th:action="@{/users/{id}/edit(id=${user.getId()})}" th:object="${user}">
-          <input type="submit" value="Изменить">
+        <form th:method="GET" th:action="@{/update_user_form/{id}(id=${user.getId()})}" th:object="${user}">
+          <input class="update_button" type="submit" value="Изменить">
         </form>
       </td>
 
       <td>
-        <form th:method="DELETE" th:action="@{/users/{id}(id=${user.getId()})}" >
-          <input type="submit" value="Удалить">
+        <form th:method="DELETE" th:action="@{/remove_user/{id}(id=${user.getId()})}" >
+          <input class="remove_button" type="submit" value="Удалить">
         </form>
       </td>
     </tr>
