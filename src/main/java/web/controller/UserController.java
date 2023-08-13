@@ -1,46 +1,68 @@
 package web.controller;
 
+import javax.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import web.models.User;
 import web.service.UserService;
-import web.service.UserServiceImpl;
 
 @Controller
 public class UserController {
 
-  private final UserService userService= new UserServiceImpl();
+  private final UserService userService;
+
   private static final String REDIRECT_MAIN_PAGE = "redirect:/";
 
+  @Autowired
+  public UserController(UserService userService) {
+    this.userService = userService;
+  }
+
   @GetMapping(value = "/")
-  public String printWelcome() {
-    userService.listUsers();
+  public String printWelcome(Model model) {
+    model.addAttribute("users", userService.listUsers());
     return "index";
   }
 
   @GetMapping(value = "/adduser_form")
-  public String printAddUser() {
-    userService.addUser("Вячеслав", "Клименко", "lol.sava.pro@mail.ru", (byte) 23);
+  public String printAddUser(Model model) {
+    model.addAttribute("user", new User());
     return "add_user";
   }
 
-  @GetMapping(value = "/update_user_form")
-  public String printUpdateUser() {
+  @GetMapping(value = "/update_user_form/{id}")
+  public String printUpdateUser(Model model, @PathVariable("id") long id) {
+    model.addAttribute("user", userService.getUserById(id));
     return "update_user";
   }
 
   @PostMapping(value = "/add_user")
-  public String addUser() {
+  public String addUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
+    if(bindingResult.hasErrors()) {
+      return "redirect:/adduser_form";
+    }
+
+    userService.addUser(user);
     return REDIRECT_MAIN_PAGE;
   }
 
-  @PostMapping(value = "/update_user")
-  public String updateUser() {
+  @PatchMapping(value = "/update_user/{id}")
+  public String updateUser(@ModelAttribute("user") User user) {
+    userService.updateUser(user);
     return REDIRECT_MAIN_PAGE;
   }
 
-  @GetMapping(value = "/remove_user")
-  public String removeUser() {
+  @DeleteMapping(value = "/remove_user/{id}")
+  public String removeUser(@PathVariable("id") long id) {
+    userService.removeUser(id);
     return REDIRECT_MAIN_PAGE;
   }
 }

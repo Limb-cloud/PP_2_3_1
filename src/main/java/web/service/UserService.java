@@ -5,7 +5,8 @@ import web.models.User;
 
 public interface UserService {
   List<User> listUsers();
-  void addUser(String firstName, String lastName, String email, Byte age);
-  void updateUserById(Long id);
-  void removeUserById(Long id);
+  void addUser(User user);
+  void updateUser(User user);
+  void removeUser(Long id);
+  User getUserById(Long id);
 }

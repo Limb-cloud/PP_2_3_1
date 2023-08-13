@@ -1,24 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Добавление пользователя</title>
-</head>
-<body>
-<form action="" typeof="POST">
-  <label for="name">Имя</label>
-  <input type="text" id="name">
+  <head>
+    <meta charset="UTF-8">
+    <title>Добавить</title>
+  </head>
+  <body>
 
-  <label for="lastname">Фамилия</label>
-  <input type="text" id="lastname">
+    <form th:method="POST" th:action="@{/add_user}" th:object="${user}">
+      <label for="name">Имя:</label>
+      <input type="text" th:field="*{firstName}" id="name" pattern= "^[a-zA-Zа-яА-Я]+$">
+      <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+      <br/>
 
-  <label for="email">Почта</label>
-  <input type="text" id="email">
+      <label for="lastName">Фамилия:</label>
+      <input type="text" th:field="*{lastName}" id="lastName" pattern= "^[a-zA-Zа-яА-Я]+$">
+      <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+      <br/>
 
-  <label for="age">Возраст</label>
-  <input type="text" id="age">
-</form>
+      <label for="email">E-mail:</label>
+      <input type="text" th:field="*{email}" id="email" pattern= "^[a-zA-Zа-яА-Я]+$">
+      <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+      <br/>
 
-<button>Добавить пользователя</button>
-</body>
+      <label for="age">Возраст:</label>
+      <input type="text" th:field="*{age}" id="age" pattern="[1-9][0-9]*">
+      <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></span>
+      <br/>
+
+      <input type="submit" value="Создать пользователя"/>
+    </form>
+
+  </body>
 </html>

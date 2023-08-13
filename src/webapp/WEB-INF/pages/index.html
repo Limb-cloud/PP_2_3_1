@@ -76,14 +76,23 @@
       <th>Изменить пользователя</th>
       <th>Удалить пользователя</th>
     </tr>
-    <tr>
-      <td>1</td>
-      <td>Иван</td>
-      <td>Иванов</td>
-      <td>ivano.iv@gmail.com</td>
-      <td>32</td>
-      <td><a href="/update_user_form" class="update_button">Изменить пользователя</a></td>
-      <td><a href="/remove_user" class="remove_button" methods="POST">Удалить пользователя</a></td>
+    <tr th:each="user : ${users}">
+      <td th:utext="${user.getId()}">Id</td>
+      <td th:utext="${user.getFirstName()()}">Имя</td>
+      <td th:utext="${user.getLastName()}">Фамилия</td>
+      <td th:utext="${user.getEmail()}">Почта</td>
+      <td th:utext="${user.getAge()}">Возраст</td>
+      <td>
+        <form th:method="GET" th:action="@{/users/{id}/edit(id=${user.getId()})}" th:object="${user}">
+          <input type="submit" value="Изменить">
+        </form>
+      </td>
+
+      <td>
+        <form th:method="DELETE" th:action="@{/users/{id}(id=${user.getId()})}" >
+          <input type="submit" value="Удалить">
+        </form>
+      </td>
     </tr>
   </table>
 </body>
