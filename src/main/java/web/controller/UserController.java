@@ -1,6 +1,5 @@
 package web.controller;
 
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,7 +44,7 @@ public class UserController {
   }
 
   @PostMapping(value = "/add_user")
-  public String addUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
+  public String addUser(@ModelAttribute("user") User user, BindingResult bindingResult) {
     if(bindingResult.hasErrors()) {
       return "redirect:/adduser_form";
     }

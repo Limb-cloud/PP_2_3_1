@@ -65,6 +65,7 @@ public class AppConfig {
     properties.put("hibernate.hbm2ddl.auto", env.getRequiredProperty("hibernate.hbm2ddl.auto"));
     properties.put("hibernate.dialect", env.getRequiredProperty("hibernate.dialect"));
     properties.put("hibernate.dialect.storage_engine", env.getRequiredProperty("hibernate.dialect.storage_engine"));
+    properties.put("hibernate.connection.characterEncoding", env.getRequiredProperty("hibernate.connection.characterEncoding"));
 
     return properties;
   }

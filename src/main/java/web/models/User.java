@@ -1,8 +1,6 @@
 package web.models;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder.In;
-import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "users")
@@ -14,19 +12,15 @@ public class User {
   private Long id;
 
   @Column(name = "first_name")
-  @Pattern(regexp = "^[a-zA-Zа-яА-Я]+$", message = "Поле Имя может содержать только буквы")
   private String firstName;
 
   @Column(name = "last_name")
-  @Pattern(regexp = "^[a-zA-Zа-яА-Я]+$", message = "Поле Фамилия может содержать только буквы")
   private String lastName;
 
   @Column(name = "email")
-  @Pattern(regexp = "^[a-zA-Zа-яА-Я]+$", message = "Поле Email может содержать только буквы")
   private String email;
 
   @Column(name = "age")
-  @Pattern(regexp="[1-9][0-9]*", message = "Поле Возраст должно быть больше ноля и может содержать только цифры")
   private Integer age;
 
   public User() {}
