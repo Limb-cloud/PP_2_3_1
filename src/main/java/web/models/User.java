@@ -95,13 +95,11 @@ public class User {
       return false;
     }
     User user = (User) o;
-    return Objects.equals(id, user.id) && Objects.equals(firstName,
-        user.firstName) && Objects.equals(lastName, user.lastName)
-        && Objects.equals(email, user.email) && Objects.equals(age, user.age);
+    return Objects.equals(id, user.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstName, lastName, email, age);
+    return (int) (this.id * firstName.hashCode() & 2);
   }
 }
